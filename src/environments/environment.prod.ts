@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  AppName: "eCommerce-Portal",
+  API_URL: "https://localhost:5001/api/"
 };

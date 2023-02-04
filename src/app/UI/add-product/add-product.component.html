@@ -1,0 +1,85 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <div class="card">
+        <div class="card-header">
+          <h2>{{title}}-Product</h2>
+        </div>
+        <div class="card-body">
+          <form class="form" [formGroup]="productForm" (ngSubmit)="onSubmit(productForm)">
+            <div class="form-group">
+              <label>Name:</label>
+              <input type="text" class="form-control" formControlName="name">
+              <span class="text-danger" *ngIf="(f['name'].touched  && f['name'].invalid)">
+                Name is required
+              </span>
+            </div>
+            <div class="form-group">
+              <label>Category Name:</label>
+              <input type="text" class="form-control" formControlName="categoryName">
+              <span class="text-danger" *ngIf="f['categoryName'].invalid && f['categoryName'].touched">
+                Category Name is required
+              </span>
+
+            </div>
+            <div class="form-group">
+              <label>Description</label>
+              <input type="text" class="form-control" formControlName="description">
+              <span class="text-danger" *ngIf="f['description'].invalid && f['description'].touched">
+                Description is required
+              </span>
+
+            </div>
+            <div class="form-group">
+              <label>Image Url:</label>
+              <input type="text" class="form-control" formControlName="imageURL">
+
+
+            </div>
+            <div class="form-group">
+              <label>Unit Type:</label>
+              <select class="form-select" aria-label="Default select example" (change)="changeUnitType($event)"
+                formControlName="unitType">
+                <option value="">Unit Type:</option>
+                <option *ngFor="let unittype of unitTypes" [ngValue]="unittype">
+                  {{ unittype }}
+                </option>
+              </select>
+
+              <span class="text-danger" *ngIf="unitType?.invalid  &&  f['unitType']?.invalid && f['unitType'].touched">
+                Please select Unit Type.
+              </span>
+
+            </div>
+
+            <div class="form-group">
+              <label>Price:</label>
+              <input type="text" class="form-control" formControlName="price">
+              <span class="text-danger" *ngIf="f['price'].invalid && f['price'].touched">
+                <span *ngIf="f['price'].errors && f['price'].errors['required']">Price is required.</span>
+                <span *ngIf="f['price'].errors && f['price'].errors['pattern']">Enter only number.</span>
+              </span>
+
+            </div>
+
+
+            <div class="form-group isActivediv">
+              <label>Is Active &nbsp;&nbsp;&nbsp;</label>
+              <!-- <input type="checkbox"  formControlName="isactive"> -->
+              <input class="form-check-input" type="checkbox" formControlName="isActive" id="flexCheckDefault">
+
+            </div>
+
+
+
+
+            <div class="form-group">
+              <button type="submit" [disabled]="productForm.invalid" class="btn btn-success">{{this.title}}</button>
+              <button type="cancel" (click)="onClose()" class="btn btn-success">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
